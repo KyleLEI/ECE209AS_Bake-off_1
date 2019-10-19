@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var myLabel: UILabel!
     @IBOutlet var myButton: UIButton!
     @IBOutlet var status: UILabel!
+    @IBOutlet var img: UIImageView!
     
     var motion = CMMotionManager()
     var timer = Timer()
@@ -53,12 +54,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func buttonStartClick(_ sender: Any){
-        
-        status.text="Button touched"
+        print("Touch Down")
+//        status.text="Button touched"
+//        status.text=""
+//        img.centerYAnchor
     }
     
     @IBAction func buttonEndClick(_ sender:Any){
+        print("Touch Up")
         status.text=""
+    }
+    
+    @IBAction func swipeLeft(_ sender: UIGestureRecognizer){
+        print("Swipe")
+        status.text="Swipe Detected"
     }
 
 }
