@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet var status: UILabel!
     @IBOutlet var img: UIImageView!
     @IBOutlet weak var ball: UIImageView!
+    
+    @IBOutlet weak var controlView: UIImageView!
     //@IBOutlet weak var ball: UIImageView!
     //var ball:UIImageView!
     var speedX:UIAccelerationValue = 0
@@ -29,6 +31,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("hello")
+        print( self.view.bounds.size.width)
+        print( self.view.bounds.size.height)
+        
         myLabel.text = "fuck it"
         
         //ball = UIImageView(image: UIImage(named: "ball"))
@@ -37,50 +42,47 @@ class ViewController: UIViewController {
         self.view.addSubview(ball)
         
         
-        moveCursor()
+//        moveCursor()
         
-        
-        
-        
+       
         startDeviceMotion()
     }
 
     
     
     
-    func moveCursor(){
-        motion.accelerometerUpdateInterval = 1/60
-        
-        if motion.isAccelerometerAvailable {
-                   let queue = OperationQueue.current
-                    print("cursor working")
-                   
-                   motion.startAccelerometerUpdates(to: queue!) { (accelerometerData, error) in
-                       //动态设置小球位置
-                       self.speedX += accelerometerData!.acceleration.x
-                       self.speedY += accelerometerData!.acceleration.y
-                       
-                       var posX = self.ball.center.x + CGFloat(self.speedX)
-                       var posY = self.ball.center.y - CGFloat(self.speedY)
-                       if posX <= ballWidth/2.0 {
-                              posX = ballWidth/2.0
-                              self.speedX *= 0
-                        }else if posX >= self.view.bounds.size.width - ballWidth/2.0 {
-                            posX = self.view.bounds.size.width - ballWidth/2.0
-                            self.speedX *= 0
-                        }
-                        
-                        if posY <= ballWidth/2.0 {
-                            posY = ballWidth/2.0;
-                            self.speedY *= 0
-                        }else if posY > self.view.bounds.size.height - ballWidth/2.0{
-                            posY = self.view.bounds.size.height - ballWidth/2.0;
-                            self.speedY *= 0
-                        }
-                        self.ball.center = CGPoint(x:posX, y:posY)
-                    }
-        }
-    }
+//    func moveCursor(){
+//        motion.accelerometerUpdateInterval = 1/60
+//
+//        if motion.isAccelerometerAvailable {
+//                   let queue = OperationQueue.current
+//                    print("cursor working")
+//
+//                   motion.startAccelerometerUpdates(to: queue!) { (accelerometerData, error) in
+//                       self.speedX += accelerometerData!.acceleration.x
+//                       self.speedY += accelerometerData!.acceleration.y
+//
+//                       var posX = self.ball.center.x + CGFloat(self.speedX)
+//                       var posY = self.ball.center.y - CGFloat(self.speedY)
+//                       if posX <= ballWidth/2.0 {
+//                              posX = ballWidth/2.0
+//                              self.speedX *= 0
+//                        }else if posX >= self.view.bounds.size.width - ballWidth/2.0 {
+//                            posX = self.view.bounds.size.width - ballWidth/2.0
+//                            self.speedX *= 0
+//                        }
+//
+//                        if posY <= ballWidth/2.0 {
+//                            posY = ballWidth/2.0;
+//                            self.speedY *= 0
+//                        }else if posY > self.view.bounds.size.height - ballWidth/2.0{
+//                            posY = self.view.bounds.size.height - ballWidth/2.0;
+//                            self.speedY *= 0
+//                        }
+//                        self.ball.center = CGPoint(x:posX, y:posY)
+//                    }
+//        }
+//    }
     
     func startDeviceMotion() {
         if motion.isDeviceMotionAvailable {
@@ -125,6 +127,21 @@ class ViewController: UIViewController {
         print("Swipe")
         status.text="Swipe Detected"
     }
+    
+    
+    
+    
 
+    @IBAction func panCursor(_ sender: UIPanGestureRecognizer){
+//        guard let cursorView = self.ball.view else{
+//            return
+//        }
+//       print("pan")
+        status.text="pan Detected"
+        let translation = sender.translation(in: self.view)
+        self.ball.center.x += translation.x
+        self.ball.center.y += translation.y
+        sender.setTranslation(.zero, in: view)
+    }
 }
 
