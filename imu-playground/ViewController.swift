@@ -9,11 +9,18 @@
 import UIKit
 import CoreMotion
 
+let ballWidth:CGFloat = 25
+
 class ViewController: UIViewController {
     @IBOutlet var myLabel: UILabel!
     @IBOutlet var myButton: UIButton!
     @IBOutlet var status: UILabel!
     @IBOutlet var img: UIImageView!
+    @IBOutlet weak var ball: UIImageView!
+    //@IBOutlet weak var ball: UIImageView!
+    //var ball:UIImageView!
+    var speedX:UIAccelerationValue = 0
+    var speedY:UIAccelerationValue = 0
     
     var motion = CMMotionManager()
     var timer = Timer()
@@ -23,9 +30,58 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("hello")
         myLabel.text = "fuck it"
+        
+        //ball = UIImageView(image: UIImage(named: "ball"))
+        //ball.bounds = CGRect(x: 0, y: 0, width: ballWidth, height: ballWidth)
+        ball.center = self.view.center
+        self.view.addSubview(ball)
+        
+        
+        moveCursor()
+        
+        
+        
+        
         startDeviceMotion()
     }
 
+    
+    
+    
+    func moveCursor(){
+        motion.accelerometerUpdateInterval = 1/60
+        
+        if motion.isAccelerometerAvailable {
+                   let queue = OperationQueue.current
+                    print("cursor working")
+                   
+                   motion.startAccelerometerUpdates(to: queue!) { (accelerometerData, error) in
+                       //动态设置小球位置
+                       self.speedX += accelerometerData!.acceleration.x
+                       self.speedY += accelerometerData!.acceleration.y
+                       
+                       var posX = self.ball.center.x + CGFloat(self.speedX)
+                       var posY = self.ball.center.y - CGFloat(self.speedY)
+                       if posX <= ballWidth/2.0 {
+                              posX = ballWidth/2.0
+                              self.speedX *= 0
+                        }else if posX >= self.view.bounds.size.width - ballWidth/2.0 {
+                            posX = self.view.bounds.size.width - ballWidth/2.0
+                            self.speedX *= 0
+                        }
+                        
+                        if posY <= ballWidth/2.0 {
+                            posY = ballWidth/2.0;
+                            self.speedY *= 0
+                        }else if posY > self.view.bounds.size.height - ballWidth/2.0{
+                            posY = self.view.bounds.size.height - ballWidth/2.0;
+                            self.speedY *= 0
+                        }
+                        self.ball.center = CGPoint(x:posX, y:posY)
+                    }
+        }
+    }
+    
     func startDeviceMotion() {
         if motion.isDeviceMotionAvailable {
             self.motion.deviceMotionUpdateInterval = 1.0 / 60.0
