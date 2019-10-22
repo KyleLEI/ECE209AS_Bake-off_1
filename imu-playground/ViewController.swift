@@ -111,7 +111,7 @@ class ViewController: UIViewController {
     
     @IBAction func buttonEndClick(_ sender:UIButton){
         print("Touch Up")
-        insert(char: "a")
+        insert(char: "\n")
     }
     
     func insert(char:String){
@@ -295,9 +295,7 @@ class ViewController: UIViewController {
         if sender.state==UIGestureRecognizer.State.began {
             /* Add a capitalized character */
             print("Long Press")
-            // preserve the previous capitalization state
             
-        }else if sender.state==UIGestureRecognizer.State.ended{
             let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
             //let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
 
@@ -410,6 +408,9 @@ class ViewController: UIViewController {
                     insert(char: "nothing")
                 }
             }
+            
+        }else if sender.state==UIGestureRecognizer.State.ended{
+            
             print("Long Press End")
         }else{
             /* Ignore repeated long press events */
@@ -430,6 +431,13 @@ class ViewController: UIViewController {
     @IBAction func sliderCallback(_ sender: UISlider) {
         print(sender.value)
         panSpeed = CGFloat(sender.value * 2 + 1.0)
+    }
+    @IBAction func clearText(_ sender: UILongPressGestureRecognizer) {
+        if sender.state==UIGestureRecognizer.State.began {
+            textbox.text = ""
+        }else if sender.state==UIGestureRecognizer.State.ended{}else{
+            return
+        }
     }
 }
 
