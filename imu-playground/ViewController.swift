@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var motion = CMMotionManager()
     var timer = Timer()
     var isCaptalized:Bool = false;
+    var panSpeed:CGFloat = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,13 +111,15 @@ class ViewController: UIViewController {
     
     @IBAction func buttonEndClick(_ sender:UIButton){
         print("Touch Up")
-        insert(char: "a")
+        insert(char: "\n")
     }
     
     func insert(char:String){
 //        textbox.text = String(textbox.text) +
 //            (isCaptalized ? char.capitalized:char)
-        textbox.insertText(isCaptalized ? char.capitalized:char)
+//        textbox.insertText(isCaptalized ? char.capitalized:char)
+        textbox.text = String(textbox.text) + (isCaptalized ? char.capitalized:char)
+        print("Inserted "+(isCaptalized ? char.capitalized:char))
         
     }
     
@@ -135,8 +138,8 @@ class ViewController: UIViewController {
 //        }
 //       print("pan")
         let translation = sender.translation(in: self.view)
-        var posX = self.ball.center.x + translation.x
-        var posY = self.ball.center.y + translation.y
+        var posX = self.ball.center.x + panSpeed*translation.x
+        var posY = self.ball.center.y + panSpeed*translation.y
         
         let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
         let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
@@ -178,102 +181,102 @@ class ViewController: UIViewController {
         if indexY == 1.0{
             switch indexX {
             case 1.0:
-                print("1")
+                insert(char: "1")
             case 2.0:
-                print("2")
+                insert(char: "2")
             case 3.0:
-                print("3")
+                insert(char: "3")
             case 4.0:
-                print("4")
+                insert(char: "4")
             case 5.0:
-                print("5")
+                insert(char: "5")
             case 6.0:
-                print("6")
+                insert(char: "6")
             case 7.0:
-                print("7")
+                insert(char: "7")
             case 8.0:
-                print("8")
+                insert(char: "8")
             case 9.0:
-                print("9")
+                insert(char: "9")
             case 10.0:
-                print("0")
+                insert(char: "0")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
         }else if indexY == 2.0{
             switch indexX {
             case 1.0:
-                print("q")
+                insert(char: "q")
             case 2.0:
-                print("w")
+                insert(char: "w")
             case 3.0:
-                print("e")
+                insert(char: "e")
             case 4.0:
-                print("r")
+                insert(char: "r")
             case 5.0:
-                print("t")
+                insert(char: "t")
             case 6.0:
-                print("y")
+                insert(char: "y")
             case 7.0:
-                print("u")
+                insert(char: "u")
             case 8.0:
-                print("i")
+                insert(char: "i")
             case 9.0:
-                print("o")
+                insert(char: "o")
             case 10.0:
-                print("p")
+                insert(char: "p")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
         }else if indexY == 3.0{
             switch indexX {
             case 1.0:
-                print("a")
+                insert(char: "a")
             case 2.0:
-                print("s")
+                insert(char: "s")
             case 3.0:
-                print("d")
+                insert(char: "d")
             case 4.0:
-                print("f")
+                insert(char: "f")
             case 5.0:
-                print("g")
+                insert(char: "g")
             case 6.0:
-                print("h")
+                insert(char: "h")
             case 7.0:
-                print("j")
+                insert(char: "j")
             case 8.0:
-                print("k")
+                insert(char: "k")
             case 9.0:
-                print("l")
+                insert(char: "l")
             case 10.0:
-                print("!")
+                insert(char: "!")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
         }else{
             switch indexX {
             case 1.0:
-                print("z")
+                insert(char: "z")
             case 2.0:
-                print("x")
+                insert(char: "x")
             case 3.0:
-                print("c")
+                insert(char: "c")
             case 4.0:
-                print("v")
+                insert(char: "v")
             case 5.0:
-                print("b")
+                insert(char: "b")
             case 6.0:
-                print("n")
+                insert(char: "n")
             case 7.0:
-                print("m")
+                insert(char: "m")
             case 8.0:
-                print(",")
+                insert(char: ",")
             case 9.0:
-                print(".")
+                insert(char: ".")
             case 10.0:
-                print("?")
+                insert(char: "?")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
             
         }
@@ -294,9 +297,7 @@ class ViewController: UIViewController {
         if sender.state==UIGestureRecognizer.State.began {
             /* Add a capitalized character */
             print("Long Press")
-            // preserve the previous capitalization state
             
-        }else if sender.state==UIGestureRecognizer.State.ended{
             let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
             //let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
 
@@ -311,104 +312,107 @@ class ViewController: UIViewController {
             if indexY == 1.0{
                 switch indexX {
                 case 1.0:
-                    print("1")
+                    insert(char: "1")
                 case 2.0:
-                    print("2")
+                    insert(char: "2")
                 case 3.0:
-                    print("3")
+                    insert(char: "3")
                 case 4.0:
-                    print("4")
+                    insert(char: "4")
                 case 5.0:
-                    print("5")
+                    insert(char: "5")
                 case 6.0:
-                    print("6")
+                    insert(char: "6")
                 case 7.0:
-                    print("7")
+                    insert(char: "7")
                 case 8.0:
-                    print("8")
+                    insert(char: "8")
                 case 9.0:
-                    print("9")
+                    insert(char: "9")
                 case 10.0:
-                    print("0")
+                    insert(char: "0")
                 default:
-                    print("nothing")
+                    insert(char: "nothing")
                 }
             }else if indexY == 2.0{
                 switch indexX {
                 case 1.0:
-                    print("Q")
+                    insert(char: "Q")
                 case 2.0:
-                    print("W")
+                    insert(char: "W")
                 case 3.0:
-                    print("E")
+                    insert(char: "E")
                 case 4.0:
-                    print("R")
+                    insert(char: "R")
                 case 5.0:
-                    print("T")
+                    insert(char: "T")
                 case 6.0:
-                    print("Y")
+                    insert(char: "Y")
                 case 7.0:
-                    print("U")
+                    insert(char: "U")
                 case 8.0:
-                    print("I")
+                    insert(char: "I")
                 case 9.0:
-                    print("O")
+                    insert(char: "O")
                 case 10.0:
-                    print("P")
+                    insert(char: "P")
                 default:
-                    print("nothing")
+                    insert(char: "nothing")
                 }
             }else if indexY == 3.0{
                 switch indexX {
                 case 1.0:
-                    print("A")
+                    insert(char: "A")
                 case 2.0:
-                    print("S")
+                    insert(char: "S")
                 case 3.0:
-                    print("D")
+                    insert(char: "D")
                 case 4.0:
-                    print("F")
+                    insert(char: "F")
                 case 5.0:
-                    print("G")
+                    insert(char: "G")
                 case 6.0:
-                    print("H")
+                    insert(char: "H")
                 case 7.0:
-                    print("J")
+                    insert(char: "J")
                 case 8.0:
-                    print("K")
+                    insert(char: "K")
                 case 9.0:
-                    print("L")
+                    insert(char: "L")
                 case 10.0:
-                    print("!")
+                    insert(char: "!")
                 default:
-                    print("nothing")
+                    insert(char: "nothing")
                 }
             }else{
                 switch indexX {
                 case 1.0:
-                    print("Z")
+                    insert(char: "Z")
                 case 2.0:
-                    print("X")
+                    insert(char: "X")
                 case 3.0:
-                    print("C")
+                    insert(char: "C")
                 case 4.0:
-                    print("V")
+                    insert(char: "V")
                 case 5.0:
-                    print("B")
+                    insert(char: "B")
                 case 6.0:
-                    print("N")
+                    insert(char: "N")
                 case 7.0:
-                    print("M")
+                    insert(char: "M")
                 case 8.0:
-                    print(",")
+                    insert(char: ",")
                 case 9.0:
-                    print(".")
+                    insert(char: ".")
                 case 10.0:
-                    print("?")
+                    insert(char: "?")
                 default:
-                    print("nothing")
+                    insert(char: "nothing")
                 }
             }
+            
+        }else if sender.state==UIGestureRecognizer.State.ended{
+            
             print("Long Press End")
         }else{
             /* Ignore repeated long press events */
@@ -424,6 +428,17 @@ class ViewController: UIViewController {
         }else{
             print("Switch Off")
             isCaptalized = false
+        }
+    }
+    @IBAction func sliderCallback(_ sender: UISlider) {
+        print(sender.value)
+        panSpeed = CGFloat(sender.value * 2 + 1.0)
+    }
+    @IBAction func clearText(_ sender: UILongPressGestureRecognizer) {
+        if sender.state==UIGestureRecognizer.State.began {
+            textbox.text = ""
+        }else if sender.state==UIGestureRecognizer.State.ended{}else{
+            return
         }
     }
 }
