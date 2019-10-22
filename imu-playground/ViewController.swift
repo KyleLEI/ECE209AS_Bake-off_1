@@ -14,17 +14,9 @@ let ballWidth:CGFloat = 25
 class ViewController: UIViewController {
     @IBOutlet var myLabel: UILabel!
     @IBOutlet var myButton: UIButton!
-    @IBOutlet var status: UILabel!
     @IBOutlet var img: UIImageView!
     @IBOutlet weak var ball: UIImageView!
-    
-//  @IBOutlet weak var controlView: UIImageView!
-    //@IBOutlet weak var ball: UIImageView!
-    //var ball:UIImageView!
-//    var speedX:UIAccelerationValue = 0
-//    var speedY:UIAccelerationValue = 0
-    
-    
+    @IBOutlet weak var textbox: UITextView!
     
     var motion = CMMotionManager()
     var timer = Timer()
@@ -122,12 +114,20 @@ class ViewController: UIViewController {
     
     @IBAction func buttonEndClick(_ sender:Any){
         print("Touch Up")
-        status.text=""
+        input(char: "a")
+    }
+    
+    func input(char:String){
+        textbox.text = String(textbox.text) + char
+    }
+    
+    func backspace(){
+        textbox.text = String(textbox.text.dropLast())
     }
     
     @IBAction func swipeLeft(_ sender: UIGestureRecognizer){
         print("Swipe")
-        status.text="Swipe Detected"
+        backspace()
     }
     
     
@@ -293,5 +293,14 @@ class ViewController: UIViewController {
 
 
 
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state==UIGestureRecognizer.State.began {
+            print("Long Press")
+            input(char:"A")
+        }else{
+            return
+        }
+        
+    }
 }
 
