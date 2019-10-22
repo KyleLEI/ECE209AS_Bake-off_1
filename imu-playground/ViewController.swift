@@ -160,6 +160,8 @@ class ViewController: UIViewController {
         sender.setTranslation(.zero, in: view)
     }
 
+    
+    
     @IBAction func tapCursor(_ sender: UITapGestureRecognizer){
         print("tap Detected")
         let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
