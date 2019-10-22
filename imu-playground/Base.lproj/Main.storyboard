@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
@@ -13,12 +13,15 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="imu_playground" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MvK-ZS-egC">
-                                <rect key="frame" x="299" y="33" width="49" height="31"/>
+                                <rect key="frame" x="35" y="550" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="cZ0-0x-A3k"/>
+                                </connections>
                             </switch>
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-3" translatesAutoresizingMaskIntoConstraints="NO" id="scT-5c-D8K">
                                 <rect key="frame" x="0.0" y="308" width="377" height="108"/>
@@ -38,37 +41,46 @@
                                 <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lsa-XP-iXf">
+                                <rect key="frame" x="16" y="20" width="343" height="265"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sR-l4-iyT">
-                                <rect key="frame" x="103" y="515" width="170" height="130"/>
+                                <rect key="frame" x="157" y="446" width="170" height="145"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <state key="normal" title="Touch Screen"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yNH-IB-SYA" appends="YES" id="Dqs-Ow-qUg"/>
                                     <outletCollection property="gestureRecognizers" destination="rYg-Rb-Scg" appends="YES" id="wsW-dF-JT1"/>
+                                    <outletCollection property="gestureRecognizers" destination="Z4A-8x-dhS" appends="YES" id="5wc-Us-m8c"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rqy-lo-ljh">
-                                <rect key="frame" x="17" y="253" width="343" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-YI-yj4">
-                                <rect key="frame" x="103" y="479" width="170" height="40"/>
+                                <rect key="frame" x="157" y="424" width="170" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Press"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Swipe/Tap"/>
                                 <connections>
                                     <action selector="buttonEndClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="661-De-sAV"/>
                                     <action selector="buttonEndClick:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="LFp-jN-OTR"/>
                                     <action selector="buttonStartClick:" destination="BYZ-38-t0r" eventType="touchDown" id="nGI-BP-04c"/>
                                     <outletCollection property="gestureRecognizers" destination="5HY-HB-ioI" appends="YES" id="8xW-2o-yHh"/>
+                                    <outletCollection property="gestureRecognizers" destination="P3z-6V-V8d" appends="YES" id="0HC-bg-kYq"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VjS-iN-RWM">
+                                <rect key="frame" x="155" y="562" width="170" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <gestureRecognizers/>
@@ -76,13 +88,19 @@
                     </view>
                     <connections>
                         <outlet property="ball" destination="bcN-93-TaE" id="PGI-Dw-qiN"/>
+                        <outlet property="capSwitch" destination="MvK-ZS-egC" id="ubn-CW-HPe"/>
                         <outlet property="img" destination="scT-5c-D8K" id="5Fx-3r-4kv"/>
                         <outlet property="myButton" destination="0Le-YI-yj4" id="Ugb-Af-DkL"/>
                         <outlet property="myLabel" destination="M7o-W7-grk" id="yMy-YH-D2K"/>
-                        <outlet property="status" destination="Rqy-lo-ljh" id="KEX-4N-cZ1"/>
+                        <outlet property="textbox" destination="Lsa-XP-iXf" id="QKA-fv-zhQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rYg-Rb-Scg">
+                    <connections>
+                        <action selector="tapCursor:" destination="BYZ-38-t0r" id="uK5-P7-GTB"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="yNH-IB-SYA">
                     <connections>
                         <action selector="panCursor:" destination="BYZ-38-t0r" id="Rvo-KQ-LaL"/>
@@ -93,13 +111,18 @@
                         <action selector="swipeLeft:" destination="BYZ-38-t0r" id="Iot-Ig-rXM"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <tapGestureRecognizer id="rYg-Rb-Scg">
+                <swipeGestureRecognizer direction="right" id="P3z-6V-V8d">
                     <connections>
-                        <action selector="tapCursor:" destination="BYZ-38-t0r" id="uK5-P7-GTB"/>
+                        <action selector="swipeRight:" destination="BYZ-38-t0r" id="nAr-tG-vJu"/>
                     </connections>
-                </tapGestureRecognizer>
+                </swipeGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Z4A-8x-dhS">
+                    <connections>
+                        <action selector="longPress:" destination="BYZ-38-t0r" id="4UL-Ua-qJe"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="87.192118226600982"/>
+            <point key="canvasLocation" x="136.80000000000001" y="86.806596701649184"/>
         </scene>
     </scenes>
     <resources>

@@ -29,8 +29,6 @@ class ViewController: UIViewController {
         print( self.view.bounds.size.width)
         print( self.view.bounds.size.height)
         
-        myLabel.text = "fuck it"
-        
         //ball = UIImageView(image: UIImage(named: "ball"))
         //ball.bounds = CGRect(x: 0, y: 0, width: ballWidth, height: ballWidth)
         ball.center = self.view.center
@@ -136,7 +134,7 @@ class ViewController: UIViewController {
 //            return
 //        }
 //       print("pan")
-        status.text="pan Detected"
+        print("pan Detected")
         let translation = sender.translation(in: self.view)
         var posX = self.ball.center.x + translation.x
         var posY = self.ball.center.y + translation.y
@@ -164,7 +162,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tapCursor(_ sender: UITapGestureRecognizer){
-        status.text="tap Detected"
+        print("tap Detected")
         let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
         //let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
         
