@@ -40,7 +40,7 @@ class ViewController: UIViewController {
 //        moveCursor()
         
         
-        startDeviceMotion()
+//        startDeviceMotion()
     }
 
     
