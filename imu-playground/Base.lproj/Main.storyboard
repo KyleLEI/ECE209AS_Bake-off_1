@@ -97,6 +97,7 @@
                         <outlet property="myButton" destination="0Le-YI-yj4" id="Ugb-Af-DkL"/>
                         <outlet property="myLabel" destination="M7o-W7-grk" id="yMy-YH-D2K"/>
                         <outlet property="textbox" destination="Lsa-XP-iXf" id="QKA-fv-zhQ"/>
+                        <outlet property="touchScreen" destination="9sR-l4-iyT" id="b0L-al-aGe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -125,7 +126,7 @@
                         <action selector="panCursor:" destination="BYZ-38-t0r" id="Rvo-KQ-LaL"/>
                     </connections>
                 </panGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="wHm-pE-iH8">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.69999999999999996" id="wHm-pE-iH8">
                     <connections>
                         <action selector="clearText:" destination="BYZ-38-t0r" id="1y0-oO-DOt"/>
                     </connections>
