@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     var motion = CMMotionManager()
     var timer = Timer()
     var isCaptalized:Bool = false;
-    var panSpeed:CGFloat = 1.0
+    var panSpeed:CGFloat = 3*0.25+1.5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -289,12 +289,15 @@ class ViewController: UIViewController {
         insert(char: " ")
     }
     
-    @IBOutlet weak var capSwitch: UISwitch!
+    @IBOutlet weak var capSwitch: UISwitch! // indicate CAP lock
     var prevIsCaped:Bool = false;
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         if sender.state==UIGestureRecognizer.State.began {
             /* Add a capitalized character */
             print("Long Press")
+            prevIsCaped = isCaptalized
+            capSwitch.setOn(true, animated: true);
+            isCaptalized = true;
             
             let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
             //let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
@@ -410,7 +413,8 @@ class ViewController: UIViewController {
             }
             
         }else if sender.state==UIGestureRecognizer.State.ended{
-            
+            isCaptalized = prevIsCaped
+            capSwitch.setOn(prevIsCaped, animated: true)
             print("Long Press End")
         }else{
             /* Ignore repeated long press events */
@@ -430,11 +434,23 @@ class ViewController: UIViewController {
     }
     @IBAction func sliderCallback(_ sender: UISlider) {
         print(sender.value)
-        panSpeed = CGFloat(sender.value * 2 + 1.0)
+        panSpeed = CGFloat(sender.value * 3 + 1.5)
     }
     @IBAction func clearText(_ sender: UILongPressGestureRecognizer) {
         if sender.state==UIGestureRecognizer.State.began {
-            textbox.text = ""
+            let alert = UIAlertController(title: "Clear all text?",
+                                          message: "You won't be able to recover your input after this."
+                , preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: {alert in
+                self.textbox.text = ""
+            }))
+            
+            let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            alert.preferredAction = cancelAction
+
+            self.present(alert, animated: true)
         }else if sender.state==UIGestureRecognizer.State.ended{}else{
             return
         }
