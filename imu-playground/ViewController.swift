@@ -108,19 +108,18 @@ class ViewController: UIViewController {
     
     @IBAction func buttonStartClick(_ sender: Any){
         print("Touch Down")
-//        status.text="Button touched"
-//        status.text=""
-//        img.centerYAnchor
     }
     
-    @IBAction func buttonEndClick(_ sender:Any){
+    @IBAction func buttonEndClick(_ sender:UIButton){
         print("Touch Up")
         insert(char: "a")
     }
     
     func insert(char:String){
-        textbox.text = String(textbox.text) +
-            (isCaptalized ? char.capitalized:char)
+//        textbox.text = String(textbox.text) +
+//            (isCaptalized ? char.capitalized:char)
+        textbox.insertText(isCaptalized ? char.capitalized:char)
+        
     }
     
     func backspace(){
@@ -290,15 +289,21 @@ class ViewController: UIViewController {
         insert(char: " ")
     }
     
+    @IBOutlet weak var capSwitch: UISwitch!
+    var prevIsCaped:Bool = false;
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         if sender.state==UIGestureRecognizer.State.began {
             /* Add a capitalized character */
             print("Long Press")
             // preserve the previous capitalization state
-            let prevIsCaped = isCaptalized
+            prevIsCaped = isCaptalized
             isCaptalized = true
+            capSwitch.setOn(true, animated: true)
             insert(char:"q")
+        }else if sender.state==UIGestureRecognizer.State.ended{
+            print("Long Press End")
             isCaptalized = prevIsCaped
+            capSwitch.setOn(prevIsCaped, animated: true)
         }else{
             /* Ignore repeated long press events */
             return
