@@ -135,7 +135,6 @@ class ViewController: UIViewController {
 //            return
 //        }
 //       print("pan")
-        print("pan Detected")
         let translation = sender.translation(in: self.view)
         var posX = self.ball.center.x + translation.x
         var posY = self.ball.center.y + translation.y
@@ -295,14 +294,121 @@ class ViewController: UIViewController {
             /* Add a capitalized character */
             print("Long Press")
             // preserve the previous capitalization state
-            prevIsCaped = isCaptalized
-            isCaptalized = true
-            capSwitch.setOn(true, animated: true)
-            insert(char:"q")
+            
         }else if sender.state==UIGestureRecognizer.State.ended{
+            let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
+            //let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
+
+            let cellHeight = self.img.bounds.size.height/4.0
+            let cellWidth = self.img.bounds.size.width/10.0
+
+            var indexX = self.ball.center.x/cellWidth
+            indexX = indexX.rounded(.up)
+            var indexY = (self.ball.center.y - imgUpper)/cellHeight
+            indexY = indexY.rounded(.up)
+
+            if indexY == 1.0{
+                switch indexX {
+                case 1.0:
+                    print("1")
+                case 2.0:
+                    print("2")
+                case 3.0:
+                    print("3")
+                case 4.0:
+                    print("4")
+                case 5.0:
+                    print("5")
+                case 6.0:
+                    print("6")
+                case 7.0:
+                    print("7")
+                case 8.0:
+                    print("8")
+                case 9.0:
+                    print("9")
+                case 10.0:
+                    print("0")
+                default:
+                    print("nothing")
+                }
+            }else if indexY == 2.0{
+                switch indexX {
+                case 1.0:
+                    print("Q")
+                case 2.0:
+                    print("W")
+                case 3.0:
+                    print("E")
+                case 4.0:
+                    print("R")
+                case 5.0:
+                    print("T")
+                case 6.0:
+                    print("Y")
+                case 7.0:
+                    print("U")
+                case 8.0:
+                    print("I")
+                case 9.0:
+                    print("O")
+                case 10.0:
+                    print("P")
+                default:
+                    print("nothing")
+                }
+            }else if indexY == 3.0{
+                switch indexX {
+                case 1.0:
+                    print("A")
+                case 2.0:
+                    print("S")
+                case 3.0:
+                    print("D")
+                case 4.0:
+                    print("F")
+                case 5.0:
+                    print("G")
+                case 6.0:
+                    print("H")
+                case 7.0:
+                    print("J")
+                case 8.0:
+                    print("K")
+                case 9.0:
+                    print("L")
+                case 10.0:
+                    print("!")
+                default:
+                    print("nothing")
+                }
+            }else{
+                switch indexX {
+                case 1.0:
+                    print("Z")
+                case 2.0:
+                    print("X")
+                case 3.0:
+                    print("C")
+                case 4.0:
+                    print("V")
+                case 5.0:
+                    print("B")
+                case 6.0:
+                    print("N")
+                case 7.0:
+                    print("M")
+                case 8.0:
+                    print(",")
+                case 9.0:
+                    print(".")
+                case 10.0:
+                    print("?")
+                default:
+                    print("nothing")
+                }
+            }
             print("Long Press End")
-            isCaptalized = prevIsCaped
-            capSwitch.setOn(prevIsCaped, animated: true)
         }else{
             /* Ignore repeated long press events */
             return
