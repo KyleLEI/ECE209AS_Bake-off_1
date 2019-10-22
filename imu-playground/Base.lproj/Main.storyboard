@@ -57,9 +57,9 @@
                                 <gestureRecognizers/>
                                 <state key="normal" title="Touch Screen"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="yNH-IB-SYA" appends="YES" id="Dqs-Ow-qUg"/>
                                     <outletCollection property="gestureRecognizers" destination="rYg-Rb-Scg" appends="YES" id="wsW-dF-JT1"/>
                                     <outletCollection property="gestureRecognizers" destination="Z4A-8x-dhS" appends="YES" id="5wc-Us-m8c"/>
+                                    <outletCollection property="gestureRecognizers" destination="yNH-IB-SYA" appends="YES" id="Dqs-Ow-qUg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Le-YI-yj4">
@@ -80,6 +80,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="VjS-iN-RWM">
                                 <rect key="frame" x="155" y="562" width="170" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderCallback:" destination="BYZ-38-t0r" eventType="valueChanged" id="4zX-3j-3Ui"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
@@ -101,11 +104,6 @@
                         <action selector="tapCursor:" destination="BYZ-38-t0r" id="uK5-P7-GTB"/>
                     </connections>
                 </tapGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="yNH-IB-SYA">
-                    <connections>
-                        <action selector="panCursor:" destination="BYZ-38-t0r" id="Rvo-KQ-LaL"/>
-                    </connections>
-                </panGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="5HY-HB-ioI">
                     <connections>
                         <action selector="swipeLeft:" destination="BYZ-38-t0r" id="Iot-Ig-rXM"/>
@@ -116,11 +114,16 @@
                         <action selector="swipeRight:" destination="BYZ-38-t0r" id="nAr-tG-vJu"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Z4A-8x-dhS">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.29999999999999999" id="Z4A-8x-dhS">
                     <connections>
                         <action selector="longPress:" destination="BYZ-38-t0r" id="4UL-Ua-qJe"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="yNH-IB-SYA">
+                    <connections>
+                        <action selector="panCursor:" destination="BYZ-38-t0r" id="Rvo-KQ-LaL"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="86.806596701649184"/>
         </scene>
