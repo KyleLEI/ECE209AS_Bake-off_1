@@ -117,6 +117,7 @@ class ViewController: UIViewController {
 //        textbox.text = String(textbox.text) +
 //            (isCaptalized ? char.capitalized:char)
         textbox.insertText(isCaptalized ? char.capitalized:char)
+        print("Inserted "+(isCaptalized ? char.capitalized:char))
         
     }
     
@@ -177,102 +178,102 @@ class ViewController: UIViewController {
         if indexY == 1.0{
             switch indexX {
             case 1.0:
-                print("1")
+                insert(char: "1")
             case 2.0:
-                print("2")
+                insert(char: "2")
             case 3.0:
-                print("3")
+                insert(char: "3")
             case 4.0:
-                print("4")
+                insert(char: "4")
             case 5.0:
-                print("5")
+                insert(char: "5")
             case 6.0:
-                print("6")
+                insert(char: "6")
             case 7.0:
-                print("7")
+                insert(char: "7")
             case 8.0:
-                print("8")
+                insert(char: "8")
             case 9.0:
-                print("9")
+                insert(char: "9")
             case 10.0:
-                print("0")
+                insert(char: "0")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
         }else if indexY == 2.0{
             switch indexX {
             case 1.0:
-                print("q")
+                insert(char: "q")
             case 2.0:
-                print("w")
+                insert(char: "w")
             case 3.0:
-                print("e")
+                insert(char: "e")
             case 4.0:
-                print("r")
+                insert(char: "r")
             case 5.0:
-                print("t")
+                insert(char: "t")
             case 6.0:
-                print("y")
+                insert(char: "y")
             case 7.0:
-                print("u")
+                insert(char: "u")
             case 8.0:
-                print("i")
+                insert(char: "i")
             case 9.0:
-                print("o")
+                insert(char: "o")
             case 10.0:
-                print("p")
+                insert(char: "p")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
         }else if indexY == 3.0{
             switch indexX {
             case 1.0:
-                print("a")
+                insert(char: "a")
             case 2.0:
-                print("s")
+                insert(char: "s")
             case 3.0:
-                print("d")
+                insert(char: "d")
             case 4.0:
-                print("f")
+                insert(char: "f")
             case 5.0:
-                print("g")
+                insert(char: "g")
             case 6.0:
-                print("h")
+                insert(char: "h")
             case 7.0:
-                print("j")
+                insert(char: "j")
             case 8.0:
-                print("k")
+                insert(char: "k")
             case 9.0:
-                print("l")
+                insert(char: "l")
             case 10.0:
-                print("!")
+                insert(char: "!")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
         }else{
             switch indexX {
             case 1.0:
-                print("z")
+                insert(char: "z")
             case 2.0:
-                print("x")
+                insert(char: "x")
             case 3.0:
-                print("c")
+                insert(char: "c")
             case 4.0:
-                print("v")
+                insert(char: "v")
             case 5.0:
-                print("b")
+                insert(char: "b")
             case 6.0:
-                print("n")
+                insert(char: "n")
             case 7.0:
-                print("m")
+                insert(char: "m")
             case 8.0:
-                print(",")
+                insert(char: ",")
             case 9.0:
-                print(".")
+                insert(char: ".")
             case 10.0:
-                print("?")
+                insert(char: "?")
             default:
-                print("nothing")
+                insert(char: "nothing")
             }
             
         }
