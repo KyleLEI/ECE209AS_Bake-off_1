@@ -18,11 +18,13 @@ class ViewController: UIViewController {
     @IBOutlet var img: UIImageView!
     @IBOutlet weak var ball: UIImageView!
     
-    @IBOutlet weak var controlView: UIImageView!
+//  @IBOutlet weak var controlView: UIImageView!
     //@IBOutlet weak var ball: UIImageView!
     //var ball:UIImageView!
-    var speedX:UIAccelerationValue = 0
-    var speedY:UIAccelerationValue = 0
+//    var speedX:UIAccelerationValue = 0
+//    var speedY:UIAccelerationValue = 0
+    
+    
     
     var motion = CMMotionManager()
     var timer = Timer()
@@ -44,7 +46,7 @@ class ViewController: UIViewController {
         
 //        moveCursor()
         
-       
+        
         startDeviceMotion()
     }
 
@@ -139,9 +141,157 @@ class ViewController: UIViewController {
 //       print("pan")
         status.text="pan Detected"
         let translation = sender.translation(in: self.view)
-        self.ball.center.x += translation.x
-        self.ball.center.y += translation.y
+        var posX = self.ball.center.x + translation.x
+        var posY = self.ball.center.y + translation.y
+        
+        let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
+        let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
+        
+        if posX <= ballWidth/2.0 {
+                posX = ballWidth/2.0
+        }else if posX >= self.view.bounds.size.width - ballWidth/2.0 {
+                posX = self.view.bounds.size.width - ballWidth/2.0
+        }
+        
+        
+        if posY <= imgUpper + ballWidth/2.0 {
+                posY = imgUpper + ballWidth/2.0
+        }else if posY >= imgLower - ballWidth/2.0 {
+                posY = imgLower - ballWidth/2.0
+        }
+        
+        
+        self.ball.center = CGPoint(x:posX, y:posY)
+        
         sender.setTranslation(.zero, in: view)
     }
+
+    @IBAction func tapCursor(_ sender: UITapGestureRecognizer){
+        status.text="tap Detected"
+        let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
+        //let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
+        
+        let cellHeight = self.img.bounds.size.height/4.0
+        let cellWidth = self.img.bounds.size.width/10.0
+        
+        var indexX = self.ball.center.x/cellWidth
+        indexX = indexX.rounded(.up)
+        var indexY = (self.ball.center.y - imgUpper)/cellHeight
+        indexY = indexY.rounded(.up)
+        
+        if indexY == 1.0{
+            switch indexX {
+            case 1.0:
+                print("1")
+            case 2.0:
+                print("2")
+            case 3.0:
+                print("3")
+            case 4.0:
+                print("4")
+            case 5.0:
+                print("5")
+            case 6.0:
+                print("6")
+            case 7.0:
+                print("7")
+            case 8.0:
+                print("8")
+            case 9.0:
+                print("9")
+            case 10.0:
+                print("0")
+            default:
+                print("nothing")
+            }
+        }else if indexY == 2.0{
+            switch indexX {
+            case 1.0:
+                print("q")
+            case 2.0:
+                print("w")
+            case 3.0:
+                print("e")
+            case 4.0:
+                print("r")
+            case 5.0:
+                print("t")
+            case 6.0:
+                print("y")
+            case 7.0:
+                print("u")
+            case 8.0:
+                print("i")
+            case 9.0:
+                print("o")
+            case 10.0:
+                print("p")
+            default:
+                print("nothing")
+            }
+        }else if indexY == 3.0{
+            switch indexX {
+            case 1.0:
+                print("a")
+            case 2.0:
+                print("s")
+            case 3.0:
+                print("d")
+            case 4.0:
+                print("f")
+            case 5.0:
+                print("g")
+            case 6.0:
+                print("h")
+            case 7.0:
+                print("j")
+            case 8.0:
+                print("k")
+            case 9.0:
+                print("l")
+            case 10.0:
+                print("!")
+            default:
+                print("nothing")
+            }
+        }else{
+            switch indexX {
+            case 1.0:
+                print("z")
+            case 2.0:
+                print("x")
+            case 3.0:
+                print("c")
+            case 4.0:
+                print("v")
+            case 5.0:
+                print("b")
+            case 6.0:
+                print("n")
+            case 7.0:
+                print("m")
+            case 8.0:
+                print(",")
+            case 9.0:
+                print(".")
+            case 10.0:
+                print("?")
+            default:
+                print("nothing")
+            }
+            
+        }
+        
+               
+        
+    }
+
+
+
+
+
+
+
+
 }
 
