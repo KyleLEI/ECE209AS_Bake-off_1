@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet var img: UIImageView!
     @IBOutlet weak var ball: UIImageView!
     @IBOutlet weak var textbox: UITextView!
+    @IBOutlet weak var touchScreen: UIButton!
     
     var motion = CMMotionManager()
     var timer = Timer()
@@ -132,14 +133,51 @@ class ViewController: UIViewController {
         backspace()
     }
 
+
     @IBAction func panCursor(_ sender: UIPanGestureRecognizer){
 //        guard let cursorView = self.ball.view else{
 //            return
 //        }
 //       print("pan")
+//        var panPosition : CGPoint
+//        if sender.state == .began{
+//            panPosition = sender.location(in: view)
+//        }
+        //print(panPosition.x)
+        let LeftBound = self.touchScreen.center.x - self.touchScreen.bounds.size.width/2.0
+        
+        let RightBound = self.touchScreen.center.x + self.touchScreen.bounds.size.width/2.0
+        
+        let UpperBound = self.myButton.center.y + self.myButton.bounds.size.height/2.0
+        
+        let LowerBound = self.touchScreen.center.y + self.touchScreen.bounds.size.height/2.0
+        
+        if(sender.location(in: view).x < LeftBound || sender.location(in: view).x > RightBound){
+            return
+        }
+        
+        if(sender.location(in: view).y < UpperBound || sender.location(in: view).y > LowerBound){
+            return
+        }
+        
+        
+        
         let translation = sender.translation(in: self.view)
-        var posX = self.ball.center.x + panSpeed*translation.x
-        var posY = self.ball.center.y + panSpeed*translation.y
+        var posX = self.ball.center.x
+        var posY = self.ball.center.y
+        
+        if sender.state != .cancelled {
+           // Add the X and Y translation to the view's original position.
+            
+            posX = posX + panSpeed*translation.x
+            posY = posY + panSpeed*translation.y
+            
+            
+           
+        }
+        else {
+           // On cancellation, do nothing
+        }
         
         let imgUpper = self.img.center.y - self.img.bounds.size.height/2.0
         let imgLower = self.img.center.y + self.img.bounds.size.height/2.0
