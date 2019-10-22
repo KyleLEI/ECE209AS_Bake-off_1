@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     
     var motion = CMMotionManager()
     var timer = Timer()
+    var isCaptalized:Bool = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,11 +115,12 @@ class ViewController: UIViewController {
     
     @IBAction func buttonEndClick(_ sender:Any){
         print("Touch Up")
-        input(char: "a")
+        insert(char: "a")
     }
     
-    func input(char:String){
-        textbox.text = String(textbox.text) + char
+    func insert(char:String){
+        textbox.text = String(textbox.text) +
+            (isCaptalized ? char.capitalized:char)
     }
     
     func backspace(){
@@ -126,13 +128,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func swipeLeft(_ sender: UIGestureRecognizer){
-        print("Swipe")
+        print("Swipe Left")
         backspace()
     }
-    
-    
-    
-    
 
     @IBAction func panCursor(_ sender: UIPanGestureRecognizer){
 //        guard let cursorView = self.ball.view else{
@@ -286,21 +284,36 @@ class ViewController: UIViewController {
         
     }
 
-
-
-
-
-
-
-
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        /* Insert a space */
+        print("Swipe Right")
+        insert(char: " ")
+    }
+    
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         if sender.state==UIGestureRecognizer.State.began {
+            /* Add a capitalized character */
             print("Long Press")
-            input(char:"A")
+            // preserve the previous capitalization state
+            let prevIsCaped = isCaptalized
+            isCaptalized = true
+            insert(char:"q")
+            isCaptalized = prevIsCaped
         }else{
+            /* Ignore repeated long press events */
             return
         }
         
+    }
+    @IBAction func changeMode(_ sender: UISwitch) {
+        /* Adjust capitalizaiton state based on the switch position */
+        if(sender.isOn){
+            print("Switch On")
+            isCaptalized = true
+        }else{
+            print("Switch Off")
+            isCaptalized = false
+        }
     }
 }
 
